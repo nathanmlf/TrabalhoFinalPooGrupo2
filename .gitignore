@@ -1,0 +1,22 @@
+#Java
+*.class
+*.jar
+*.war
+*.ear
+
+#Logs
+*.log
+
+#Eclipse
+.classpath
+.project
+.settings/
+
+#Pastas de build
+bin/
+build/
+out/
+
+#Sistema operacional
+.DS_Store
+Thumbs.db 
