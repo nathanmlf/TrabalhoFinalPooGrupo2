@@ -2,6 +2,8 @@ package br.serratec.projeto.model;
 
 import java.time.LocalDate;
 
+////// to do 
+///
 public class FolhaPagamento {
 	private int codigo;
 	private Funcionario funcionario; // relacionamento com funcionario
