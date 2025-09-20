@@ -2,14 +2,12 @@ package br.serratec.projeto.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
 import br.serratec.projeto.model.Dependente;
 import br.serratec.projeto.model.DependenteException;
-import br.serratec.projeto.model.Funcionario;
 
 public class DaoDependente {
 
