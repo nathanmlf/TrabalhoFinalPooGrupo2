@@ -2,6 +2,8 @@ package br.serratec.projeto.model;
 
 import java.time.LocalDate;
 
+// TODO NATHAN
+
 public class Dependente extends Pessoa {
 	private Parentesco parentesco;
 
