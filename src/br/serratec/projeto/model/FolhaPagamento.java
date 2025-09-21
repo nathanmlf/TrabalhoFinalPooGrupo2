@@ -2,6 +2,8 @@ package br.serratec.projeto.model;
 
 import java.time.LocalDate;
 
+import java.util.List;
+
 //TODO DIANA
 
 public class FolhaPagamento {
@@ -11,7 +13,7 @@ public class FolhaPagamento {
 	private double descontoINSS;
 	private double descontoIR;
 	private double salarioLiquido;
-	private Funcionario dependentes;
+	//private Funcionario dependentes;
 	
 	
 
@@ -22,12 +24,12 @@ public class FolhaPagamento {
 	}
 
 	// Construtor
-	public FolhaPagamento(int codigo, Funcionario funcionario, LocalDate dataPagamento, Funcionario dependentes){
+	public FolhaPagamento(int codigo, Funcionario funcionario, LocalDate dataPagamento){
 		super();
 		this.codigo = codigo;
 		this.funcionario = funcionario;
 		this.dataPagamento = dataPagamento;
-		this.funcionario = dependentes;
+		//this.dependentes = dependentes;
 		calcularDescontos();
 	}
 	
@@ -95,12 +97,14 @@ public class FolhaPagamento {
 
 	// metodo para calcular IR
 
-	private double calcularIR(double salarioBruto, double INSS, Funcionario dependentes) {
+	private double calcularIR(double salarioBruto, double INSS, List<Dependente> dependentes) {
 		double deducaoDependente =  189.59;
+		double totalDeducaoDependentes = dependentes.size() * deducaoDependente;
+
 		
 		// double deducaoPorDependente = dependentes * deducaoPorDependente;
 	
-		double baseCalculo = salarioBruto - deducaoDependente - INSS;
+		double baseCalculo = salarioBruto - INSS - totalDeducaoDependentes;
 	
 		// se a base de calculo for negativa ou zero, não há IR
 		if (baseCalculo <= 0) {
@@ -132,6 +136,7 @@ public class FolhaPagamento {
 
 		// aplicando a formula (((salário bruto - dedução dependentes - INSS) × alíquota) - parcela a deduzir
 		double calculoIR = (baseCalculo * aliquotaIR) - parcelaDeduzir;
+		return Math.max(0, calculoIR);
 			
 		}
 
@@ -143,7 +148,7 @@ public class FolhaPagamento {
 		this.descontoINSS = calcularINSS(salarioBruto);
 		
 	// calculando o IR
-		this.descontoIR = calcularIR(salarioBruto, this.descontoINSS, this.dependentes);
+		this.descontoIR = calcularIR(salarioBruto, this.descontoINSS, this.funcionario.getDependentes());
 		
 	//Calcular salario liquido
 		this.salarioLiquido = salarioBruto - this.descontoINSS - this.descontoIR;
@@ -154,14 +159,15 @@ public class FolhaPagamento {
 	public void exibirFolhaPagamento() {
 		double salarioBruto = funcionario.getSalarioBruto();
 		int faixaINSS = determinarFaixaINSS(salarioBruto);
-		double deducaoDependente = 189.59;
-		double baseCalculoIR = salarioBruto - deducaoDependente - descontoINSS;
+		int numDependentes = funcionario.getDependentes().size();
+		double deducaoDependente = 189.59 * numDependentes;
+		double baseCalculoIR = salarioBruto - this.descontoINSS - deducaoDependente ;
 		
 		
 	// Exibir faixa do IR p exibição
 		
 		String faixaIR = "isento";
-		if (baseCalculoIR > 2259.20 && baseCalculoIR <+ 2826.65) {
+		if (baseCalculoIR > 2259.20 && baseCalculoIR <= 2826.65) {
 			faixaIR = "7,5%";
 		}else if (baseCalculoIR > 2826.65 && baseCalculoIR <= 3751.05) {
 			faixaIR ="15%";
@@ -173,20 +179,21 @@ public class FolhaPagamento {
 			faixaIR = "27.5%";
 		}
 			
-		System.out.println("\uD83D\uDCB0 FolhaPagamento \uD83D\uDCB0");
-		System.out.println("Código: " + codigo);
-		System.out.println("Funcionário: " + funcionario.getNome());
-		System.out.println("Data de Pagamento: " + dataPagamento);
-		System.out.println("Número de Dependentes: " + dependentes);
-		System.out.println("---------------------------------------");
-		System.out.printf("Salário Bruto: " , String.format("%.2f", salarioBruto));
-		System.out.printf("Dedução Dependendes: R$ ", String.format("%.2f", deducaoDependente));
-		System.out.printf("Desconto INSS (Faixa " + faixaINSS + "): R$", String.format("%.2f",descontoINSS));
-		System.out.printf("Base Cálculo IR: R$ " , String.format("%.2f", baseCalculoIR));
-		System.out.printf("Desconto IR (" + faixaIR + ") :R$ " , String.format("%.2f", descontoIR));
-		System.out.println("-----------------------------------------");
-		System.out.printf("Salario Liquido: R$ " , String.format("%.2f", salarioLiquido));
-		System.out.println("*******************************************\n");
+		System.out.println("\uD83D\uDCB0 Folha de Pagamento \uD83D\uDCB0");
+        System.out.println("Código: " + codigo);
+        System.out.println("Funcionário: " + funcionario.getNome());
+        System.out.println("CPF: " + funcionario.getCpf());
+        System.out.println("Data de Pagamento: " + dataPagamento);
+        System.out.printf("Número de Dependentes: %d%n", numDependentes);
+        System.out.println("---------------------------------------");
+        System.out.printf("Salário Bruto: R$ %.2f%n", salarioBruto);
+        System.out.printf("Dedução Dependentes: R$ %.2f%n", deducaoDependente);
+        System.out.printf("Desconto INSS (Faixa %d): R$ %.2f%n", faixaINSS, descontoINSS);
+        System.out.printf("Base de Cálculo IR: R$ %.2f%n", baseCalculoIR);
+        System.out.printf("Desconto IR (%s): R$ %.2f%n", faixaIR, descontoIR);
+        System.out.println("-----------------------------------------");
+        System.out.printf("Salário Líquido: R$ %.2f%n", salarioLiquido);
+        System.out.println("*******************************************\n");
 		}
 		
 
@@ -225,14 +232,14 @@ public class FolhaPagamento {
 		return descontoIR;
 	}
 
-	 public Funcionario getDependentes() {
+	/* public Funcionario getDependentes() {
 	        return dependentes;
 	 }
 	 
 	 public void setDependentes(Funcionario dependentes) {
 	        this.dependentes = dependentes;
 	        calcularDescontos(); // Recalcular quando mudar dependentes
-	 } 
+	 } */
 	public double getSalarioLiquido() {
 		return salarioLiquido;
 	}
