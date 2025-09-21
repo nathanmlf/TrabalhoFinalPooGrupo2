@@ -2,28 +2,43 @@ package br.serratec.projeto.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
 
 //TODO BRUNO
 
 public class Funcionario extends Pessoa {
 
-	private Double salarioBruto, descontoInss, descontoIr, baseIR;
+	private Double salarioBruto;
+	//descontoInss, descontoIr, baseIR;
 	private List<Dependente> dependentes;
+	//private Dependente dependentes;
 
 	public Funcionario(String nome, String cpf, LocalDate dataNascimento, Double salarioBruto) {
 		super(nome, cpf, dataNascimento);
 		this.salarioBruto = salarioBruto;
+		this.dependentes = new ArrayList<>(); // add
 	}
 
-	public Funcionario(String nome, String cpf, LocalDate dataNascimento) {
-		super(nome, cpf, dataNascimento);
-	}
+	//public Funcionario(String nome, String cpf, LocalDate dataNascimento) {
+		//super(nome, cpf, dataNascimento);
+	//}
 
 	public Double getSalarioBruto() {
 		return salarioBruto;
 	}
 
-	public Double getDescontoInss() {
+	public List<Dependente> getDependentes() {
+		return dependentes;
+	}
+
+	public void adicionarDependente(Dependente dependente) {
+		this.dependentes.add(dependente);
+	}
+
+	public void removerDependente(Dependente dependente) {
+		this.dependentes.remove(dependente);
+	}
+	/*public Double getDescontoInss() {
 		return descontoInss;
 	}
 
@@ -33,9 +48,9 @@ public class Funcionario extends Pessoa {
 
 	public Double getBaseIR() {
 		return baseIR;
-	}
+	}*/
 
-	public Double CalcularInss(Double salarioBruto) {
+	/*public Double CalcularInss(Double salarioBruto) {
 		if (salarioBruto > 8157.41) {
 			descontoInss = (salarioBruto * 0.14);
 			baseIR = (salarioBruto - descontoInss) - 190.42;
@@ -57,7 +72,7 @@ public class Funcionario extends Pessoa {
 			baseIR = (salarioBruto - descontoInss);
 			return baseIR;
 		}
-	}
+	
 
 	public Double CalcularIr(Double baseIR) {
 		double valorDependentes = dependentes.size() * 189.59;
@@ -72,6 +87,6 @@ public class Funcionario extends Pessoa {
 		} else {
 			return descontoIr = 0.00;
 		}
-	}
+	}*/
 
 }
