@@ -2,39 +2,43 @@
 
 ### INTEGRANTES: BRUNO MARCHIORI, DIANA, JÉSSICA, SIMONE, NATHAN.
 
-##RESPONSÁVEIS
+---
 
-##TODOS 
+## RESPONSÁVEIS
 
-*UML
-*CSV
+### **TODOS**
+* UML
+* CSV
 
-##BRUNO
+---
 
-*DaoDependente
-*Dependente
-*ConnectionFactory
+### **BRUNO**
+* DaoDependente
+* Dependente
+* ConnectionFactory
 
-##DIANA
+---
 
-*FolhaPagamento
-*Funcionario
+### **DIANA**
+* FolhaPagamento
+* Funcionario
 
-##JÉSSICA
+---
 
-*Parentesco
-*Pessoa
-*DaoFolhaPagamento
+### **JÉSSICA**
+* Parentesco
+* Pessoa
+* DaoFolhaPagamento
 
-##SIMONE
+---
 
-*Funcionario
-*DaoFuncionario
+### **SIMONE**
+* Funcionario
+* DaoFuncionario
 
-##NATHAN
+---
 
-*Principal
-*EscritorArquivo
-*LeitorArquivo
-
-
+### **NATHAN**
+* Principal
+* EscritorArquivo
+* LeitorArquivo
