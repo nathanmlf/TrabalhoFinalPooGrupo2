@@ -102,4 +102,8 @@ public class FolhaPagamento {
 		return salarioLiquido;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a43fef1ad3ba1a7c22cfc3147f3e001a5339ec73
