@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 
-public class FolhaPagamento {
+public class FolhaPagamento implements Formatador{
 	private Integer codigoFolhaPagamento;
 	private Funcionario funcionario;
 	private LocalDate dataPagamento;
@@ -72,12 +72,6 @@ public class FolhaPagamento {
 		return Math.max(0, imposto);
 	}
 
-	@Override
-	public String toString() {
-		return String.format(new Locale("pt", "BR"), "%s;%s;%.2f;%.2f;%.2f", this.funcionario.getNome(),
-				this.funcionario.getCpf(), this.descontoINSS, this.descontoIR, this.salarioLiquido);
-	}
-
 	public Integer getCodigoFolhaPagamento() {
 		return codigoFolhaPagamento;
 	}
@@ -102,8 +96,14 @@ public class FolhaPagamento {
 		return salarioLiquido;
 	}
 
-<<<<<<< HEAD
+	@Override
+	public String formatarParaLinha() {
+		return String.format(new Locale("pt", "BR"), "%s;%s;%.2f;%.2f;%.2f",
+                this.funcionario.getNome(),
+                this.funcionario.getCpf(),
+                this.descontoINSS,
+                this.descontoIR,
+                this.salarioLiquido);
+	}
+
 }
-=======
-}
->>>>>>> a43fef1ad3ba1a7c22cfc3147f3e001a5339ec73

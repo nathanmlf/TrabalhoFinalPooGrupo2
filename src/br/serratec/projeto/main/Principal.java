@@ -68,8 +68,10 @@ public class Principal {
 			for (Funcionario funcionario : funcionariosDoArquivo) {
 				FolhaPagamento folha = new FolhaPagamento(0, funcionario, LocalDate.now());
 				folhasCalculadas.add(folha);
-				System.out.println(folha);
+				
+				System.out.println(folha.formatarParaLinha());
 			}
+
 			EscritorArquivo.escreverArquivoSaida(caminhoSaida, folhasCalculadas);
 			System.out.println("-> Arquivo de saída gerado em: " + caminhoSaida);
 
