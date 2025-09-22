@@ -1,7 +1,5 @@
 package br.serratec.projeto.model;
 
-//TODO JESS
-
 public enum Parentesco {
-	FILHO, SOBRINHO, OUTROS
+	FILHO, FILHA, SOBRINHO, SOBRINHA, OUTROS
 }
