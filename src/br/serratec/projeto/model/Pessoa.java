@@ -1,7 +1,5 @@
 package br.serratec.projeto.model;
 
-//TODO JESS
-
 import java.time.LocalDate;
 
 public abstract class Pessoa {
