@@ -1,39 +1,40 @@
-# TRABALHO FINAL - GRUPO 2
+# TRABALHO FINAL POO GRUPO 2
 
 ### INTEGRANTES: BRUNO MARCHIORI, DIANA, JÉSSICA, SIMONE, NATHAN.
 
--RESPONSÁVEIS
+##RESPONSÁVEIS
 
--TODOS 
+##TODOS 
 
--UML
--CSV
+*UML
+*CSV
 
--BRUNO
+##BRUNO
 
--DaoDependente
--Dependente
--ConnectionFactory
+*DaoDependente
+*Dependente
+*ConnectionFactory
 
--DIANA
+##DIANA
 
--FolhaPagamento
--Funcionario
+*FolhaPagamento
+*Funcionario
 
--JÉSSICA
+##JÉSSICA
 
--Parentesco
--Pessoa
--DaoFolhaPagamento
+*Parentesco
+*Pessoa
+*DaoFolhaPagamento
 
--SIMONE
+##SIMONE
 
--Funcionario
--DaoFuncionario
+*Funcionario
+*DaoFuncionario
 
--NATHAN
+##NATHAN
 
--Principal
--EscritorArquivo
-###LeitorArquivo
+*Principal
+*EscritorArquivo
+*LeitorArquivo
+
 
