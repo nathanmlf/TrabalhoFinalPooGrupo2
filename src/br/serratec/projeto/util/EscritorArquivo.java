@@ -14,7 +14,7 @@ public class EscritorArquivo {
 
 			for (FolhaPagamento folha : folhaDePagamento) {
 
-				bw.write(folha.toString());
+				bw.write(folha.formatarParaLinha());
 				bw.newLine();
 			}
 			System.out.println("Arquivo criado com sucesso!");
