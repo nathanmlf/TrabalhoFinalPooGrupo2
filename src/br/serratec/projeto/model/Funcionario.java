@@ -41,6 +41,7 @@ public class Funcionario extends Pessoa {
 		return dependentes;
 	}
 
+	//NÃO ESTÁ SENDO UTILIZADA
 	public void setDependentes(List<Dependente> dependentes) {
 		this.dependentes = dependentes;
 	}
