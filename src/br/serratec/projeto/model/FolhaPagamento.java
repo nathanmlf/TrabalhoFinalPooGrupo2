@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 
-public class FolhaPagamento implements Formatador{
+public class FolhaPagamento implements Formatador {
 	private Integer codigoFolhaPagamento;
 	private Funcionario funcionario;
 	private LocalDate dataPagamento;
@@ -28,19 +28,18 @@ public class FolhaPagamento implements Formatador{
 	}
 
 	private Double calcularINSS(Double salarioBruto) {
-		Double inss = 0.0;
+		Double inss;
 
-		if (salarioBruto <= 1556.94) {
+		if (salarioBruto <= 1518.00) {
 			inss = salarioBruto * 0.075;
-		} else if (salarioBruto <= 2924.28) {
-			inss = (1556.94 * 0.075) + (salarioBruto - 1556.94) * 0.09;
-		} else if (salarioBruto <= 4386.42) {
-			inss = (1556.94 * 0.075) + (2924.28 - 1556.94) * 0.09 + (salarioBruto - 2924.28) * 0.12;
-		} else if (salarioBruto <= 8673.55) {
-			inss = (1556.94 * 0.075) + (2924.28 - 1556.94) * 0.09 + (4386.42 - 2924.28) * 0.12
-					+ (salarioBruto - 4386.42) * 0.14;
+		} else if (salarioBruto <= 2793.88) {
+			inss = (salarioBruto * 0.09) - 22.77;
+		} else if (salarioBruto <= 4190.83) {
+			inss = (salarioBruto * 0.12) - 106.60;
+		} else if (salarioBruto <= 8157.41) {
+			inss = (salarioBruto * 0.14) - 190.42;
 		} else {
-			inss = 1011.39;
+			inss = 951.62;
 		}
 		return inss;
 	}
@@ -98,12 +97,8 @@ public class FolhaPagamento implements Formatador{
 
 	@Override
 	public String formatarParaLinha() {
-		return String.format(new Locale("pt", "BR"), "%s;%s;%.2f;%.2f;%.2f",
-                this.funcionario.getNome(),
-                this.funcionario.getCpf(),
-                this.descontoINSS,
-                this.descontoIR,
-                this.salarioLiquido);
+		return String.format(new Locale("pt", "BR"), "%s;%s;%.2f;%.2f;%.2f", this.funcionario.getNome(),
+				this.funcionario.getCpf(), this.descontoINSS, this.descontoIR, this.salarioLiquido);
 	}
 
 }

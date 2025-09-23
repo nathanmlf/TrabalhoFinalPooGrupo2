@@ -68,7 +68,7 @@ public class Principal {
 			for (Funcionario funcionario : funcionariosDoArquivo) {
 				FolhaPagamento folha = new FolhaPagamento(0, funcionario, LocalDate.now());
 				folhasCalculadas.add(folha);
-				
+
 				System.out.println(folha.formatarParaLinha());
 			}
 
