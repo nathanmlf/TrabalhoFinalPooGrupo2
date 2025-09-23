@@ -29,7 +29,7 @@ public class DaoDependente {
 			stmt.setString(4, dependente.getParentesco().name());
 			stmt.setInt(5, idDoFuncionario);
 
-			stmt.execute();
+			stmt.executeUpdate();
 			System.out.println(
 					"--> Dependente '" + dependente.getNome() + "' inserido para o funcionário ID: " + idDoFuncionario);
 		}

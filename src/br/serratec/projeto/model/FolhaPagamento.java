@@ -48,7 +48,7 @@ public class FolhaPagamento implements Formatador {
 		Double deducaoPorDependente = 189.59;
 		Double baseCalculo = salarioBruto - inss - (dependentes.size() * deducaoPorDependente);
 
-		if (baseCalculo <= 2259.20) {
+		if (baseCalculo <= 2259.00) {
 			return 0.0;
 		}
 
